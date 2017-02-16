@@ -1,0 +1,15 @@
+<tr>
+    <input type="hidden" name="authenticity_token" method="<%= form_authenticity_token %>"/>
+
+  <td><%= req.start_date %></td>
+  <td><%= req.end_date %></td>
+  <td><%= req.user.user_name %></td>
+  <td>
+    <% if req.pending? && authorized_owner? %>
+        <%= button_to "Approve", approve_cat_rental_request_url(req) %>
+        <%= button_to "Deny", deny_cat_rental_request_url(req) %>
+    <% else %>
+      <%= req.status %>
+    <% end %>
+  </td>
+</tr>
